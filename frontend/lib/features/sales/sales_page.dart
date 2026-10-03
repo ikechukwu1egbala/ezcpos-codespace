@@ -1,2 +1,10 @@
 import 'package:flutter/material.dart';
-class SalesPage extends StatelessWidget{const SalesPage({super.key});@override Widget build(BuildContext c)=>ListView(padding:const EdgeInsets.all(16),children:[Card(child:ListTile(leading:const Icon(Icons.point_of_sale),title:const Text('New Sale'),subtitle:const Text('Product search, cart, discount and payment workflow is ready for API wiring.'),trailing:FilledButton(onPressed:(){},child:const Text('Open')))),const Card(child:ListTile(title:Text('Offline-first sales'),subtitle:Text('Sales should be written locally first and synchronized with an idempotent operation_id.')))]);}
+
+class SalesPage extends StatelessWidget {
+  const SalesPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: Text('Sales'));
+  }
+}

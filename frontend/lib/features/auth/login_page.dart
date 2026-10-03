@@ -1,6 +1,127 @@
 import 'package:flutter/material.dart';
+
 import '../../core/api.dart';
-import '../dashboard/dashboard_page.dart';
 import '../../core/app.dart';
-class LoginPage extends StatefulWidget{const LoginPage({super.key});@override State<LoginPage> createState()=>_LoginPageState();}
-class _LoginPageState extends State<LoginPage>{final user=TextEditingController(text:'demo');final pass=TextEditingController(text:'demo1234');bool loading=false;String? error;Future<void> login()async{setState(()=>loading=true);try{final r=await Api.instance.post('/auth/token/',{'username':user.text.trim(),'password':pass.text});Api.instance.access=r['access'] as String; if(mounted)Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(_)=>const HomeShell()));}catch(e){setState(()=>error='Login failed. Create a user with the backend setup command.');}finally{if(mounted)setState(()=>loading=false);}}@override Widget build(BuildContext c)=>Scaffold(body:Center(child:ConstrainedBox(constraints:const BoxConstraints(maxWidth:420),child:Padding(padding:const EdgeInsets.all(24),child:Card(child:Padding(padding:const EdgeInsets.all(24),child:Column(mainAxisSize:MainAxisSize.min,children:[const Icon(Icons.storefront,size:64),const SizedBox(height:12),const Text('EZC POS',style:TextStyle(fontSize:32,fontWeight:FontWeight.bold)),const Text('Retail & wholesale made simple'),const SizedBox(height:28),TextField(controller:user,decoration:const InputDecoration(labelText:'Username',prefixIcon:Icon(Icons.person))),const SizedBox(height:12),TextField(controller:pass,obscureText:true,decoration:const InputDecoration(labelText:'Password',prefixIcon:Icon(Icons.lock))),if(error!=null)Padding(padding:const EdgeInsets.only(top:12),child:Text(error!,style:const TextStyle(color:Colors.red))),const SizedBox(height:20),SizedBox(width:double.infinity,child:FilledButton(onPressed:loading?null:login,child:Text(loading?'Signing in…':'Sign in')))])))))));}
+
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final user = TextEditingController(text: 'demo');
+  final pass = TextEditingController(text: 'demo1234');
+
+  bool loading = false;
+  String? error;
+
+  Future<void> login() async {
+    setState(() {
+      loading = true;
+      error = null;
+    });
+
+    try {
+      final r = await Api.instance.post('/auth/token/', {
+        'username': user.text.trim(),
+        'password': pass.text,
+      });
+
+      Api.instance.access = r['access'] as String;
+
+      if (mounted) {
+        Navigator.of(
+          context,
+        ).pushReplacement(MaterialPageRoute(builder: (_) => const HomeShell()));
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          error = 'Login failed. Create a user with the backend setup command.';
+        });
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          loading = false;
+        });
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    user.dispose();
+    pass.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext c) {
+    return Scaffold(
+      body: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 420),
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.storefront, size: 64),
+                    const SizedBox(height: 12),
+                    const Text(
+                      'EZC POS',
+                      style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const Text('Retail & wholesale made simple'),
+                    const SizedBox(height: 28),
+                    TextField(
+                      controller: user,
+                      decoration: const InputDecoration(
+                        labelText: 'Username',
+                        prefixIcon: Icon(Icons.person),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    TextField(
+                      controller: pass,
+                      obscureText: true,
+                      decoration: const InputDecoration(
+                        labelText: 'Password',
+                        prefixIcon: Icon(Icons.lock),
+                      ),
+                    ),
+                    if (error != null)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 12),
+                        child: Text(
+                          error!,
+                          style: const TextStyle(color: Colors.red),
+                        ),
+                      ),
+                    const SizedBox(height: 20),
+                    SizedBox(
+                      width: double.infinity,
+                      child: FilledButton(
+                        onPressed: loading ? null : login,
+                        child: Text(loading ? 'Signing in…' : 'Sign in'),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
