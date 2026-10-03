@@ -4,11 +4,11 @@
   "features": {
     "ghcr.io/devcontainers/features/python:1": {
       "version": "3.13"
-    },
-    "ghcr.io/devcontainers/features/flutter:1": {
-      "version": "3.47.0"
     }
   },
-  "forwardPorts": [8000, 8080],
+  "forwardPorts": [
+    8000,
+    8080
+  ],
   "postCreateCommand": "bash scripts/setup.sh"
 }
