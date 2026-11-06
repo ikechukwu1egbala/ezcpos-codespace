@@ -1,4 +1,86 @@
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-class Api { Api._(); static final instance=Api._(); String baseUrl=const String.fromEnvironment('EZC_API_URL', defaultValue:'http://127.0.0.1:8000/api'); String? access; Future<void> init() async {final p=await SharedPreferences.getInstance(); access=p.getString('access');} Future<Map<String,dynamic>> get(String path) async {final r=await http.get(Uri.parse('$baseUrl$path'),headers:_headers()); return _decode(r);} Future<Map<String,dynamic>> post(String path,Map<String,dynamic> body) async {final r=await http.post(Uri.parse('$baseUrl$path'),headers:{..._headers(),'Content-Type':'application/json'},body:jsonEncode(body)); return _decode(r);} Map<String,String> _headers()=>{if(access!=null)'Authorization':'Bearer $access'}; Map<String,dynamic> _decode(http.Response r){final b=jsonDecode(r.body); if(r.statusCode>=400) throw Exception(b.toString()); return b is Map<String,dynamic>?b:{'data':b};}}
+
+class Api {
+  Api._();
+
+  static final instance = Api._();
+
+  final String baseUrl = const String.fromEnvironment(
+    'EZC_API_URL',
+    defaultValue: 'http://127.0.0.1:8000/api',
+  );
+
+  String? accessToken;
+
+  Future<void> init() async {
+    final prefs = await SharedPreferences.getInstance();
+    accessToken = prefs.getString('ezc_access_token');
+  }
+
+  Future<void> saveToken(String token) async {
+    accessToken = token;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('ezc_access_token', token);
+  }
+
+  Map<String, String> get authHeaders => {
+    if (accessToken != null && accessToken!.isNotEmpty)
+      'Authorization': 'Bearer $accessToken',
+  };
+
+  Future<dynamic> get(String path) async {
+    final response = await http.get(
+      Uri.parse('$baseUrl$path'),
+      headers: {
+        'Content-Type': 'application/json',
+        ...authHeaders,
+      },
+    );
+    return _decode(response);
+  }
+
+  Future<dynamic> post(String path, [Map<String, dynamic>? body]) async {
+    final response = await http.post(
+      Uri.parse('$baseUrl$path'),
+      headers: {
+        'Content-Type': 'application/json',
+        ...authHeaders,
+      },
+      body: body == null ? null : jsonEncode(body),
+    );
+    return _decode(response);
+  }
+
+  dynamic _decode(http.Response response) {
+    final body = response.body.trim();
+    if (body.isEmpty) {
+      return {};
+    }
+
+    try {
+      final decoded = jsonDecode(body);
+      if (response.statusCode >= 400) {
+        throw ApiException(response.statusCode, decoded);
+      }
+      return decoded;
+    } catch (e) {
+      if (response.statusCode >= 400) {
+        throw ApiException(response.statusCode, {'detail': body});
+      }
+      throw FormatException('Invalid API response: $body');
+    }
+  }
+}
+
+class ApiException implements Exception {
+  ApiException(this.statusCode, this.details);
+
+  final int statusCode;
+  final dynamic details;
+
+  @override
+  String toString() => 'ApiException($statusCode): $details';
+}
