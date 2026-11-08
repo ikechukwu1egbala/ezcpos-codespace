@@ -9,3 +9,10 @@ frontend/.packages
 .DS_Store
 .idea/
 .vscode/
+
+# Local diagnostic output files
+outputs.txt
+**/outputs.txt
+
+# Temporary review reports
+review-before-push.txt
