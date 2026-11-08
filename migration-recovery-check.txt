@@ -1,0 +1,29 @@
+===== GIT STATUS =====
+ M backend/pos/urls.py
+?? backend/commerce/migrations/0001_initial.py
+?? backend/migration-verification.txt
+?? backend/outputs.txt
+?? migration-recovery-check.txt
+?? outputs.txt
+
+===== RECENT COMMITS =====
+7ebcb5b Fix EZC mobile frontend compilation and tests
+3edf51d Fix Codespace container setup
+640f151 Fix Codespace Flutter and Python features
+
+===== MIGRATION FILES IN GIT HISTORY =====
+--- users ---
+--- pos ---
+--- inventory ---
+--- payments ---
+--- expenses ---
+--- sync ---
+
+===== CURRENT MIGRATION DIRECTORIES =====
+backend/sync/migrations
+backend/expenses/migrations
+backend/inventory/migrations
+backend/payments/migrations
+backend/pos/migrations
+backend/commerce/migrations
+backend/users/migrations

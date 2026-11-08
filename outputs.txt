@@ -1,0 +1,69 @@
+===== FLUTTER API CONFIGURATION =====
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+class Api { Api._(); static final instance=Api._(); String baseUrl=const String.fromEnvironment('EZC_API_URL', defaultValue:'http://127.0.0.1:8000/api'); String? access; Futur[07/Nov/2026 21:10:22] "GET /api/health/ HTTP/1.1" 200 42
+[07/Nov/2026 21:13:00] code 400, message Bad request syntax ("\x16\x03\x01\x00÷\x01\x00\x00ó\x03\x03£\x0fâQ^Í§×Y\x13ÿ\x87Ø:I\x05$\x88²ª\x10tF²l\x91\x1a¦nXÙ\x9a\x00\x00\x84\x003\x009\x005\x00/À,À0\x00£\x00\x9fÌ©Ì¨ÌªÀ¯À\xadÀ£À\x9fÀ+À/\x00¢\x00\x9eÀ®À¬À¢À\x9eÀ$À(\x00k\x00jÀsÀw\x00Ä\x00ÃÀ#À'\x00g\x00@ÀrÀv\x00¾\x00½À")
+[07/Nov/2026 21:13:00] You're accessing the development server over HTTPS, but it only supports HTTP.
+[07/Nov/2026 21:13:00] code 400, message Bad request version ('þÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì\xad\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x006\x00')
+[07/Nov/2026 21:13:00] You're accessing the development server over HTTPS, but it only supports HTTP.
+Not Found: /
+[07/Nov/2026 21:13:00] code 400, message Bad request version ('î¶Ï62\x08\x81SP\x00\x00')
+[07/Nov/2026 21:13:00] code 400, message Bad request syntax ('\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02jï\x86L')
+[07/Nov/2026 21:13:00] code 400, message Bad request syntax ('\x16\x03\x03\x00\x8c\x01\x00\x00\x88\x03\x03jï\x86Lÿ^íýé¨%½4{¬\x01\x0eF()NE¡¦\x82í\x14')
+[07/Nov/2026 21:13:00] code 400, message Bad request version ('þÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì\xad\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00\x00\x16\x00')
+[07/Nov/2026 21:13:00] You're accessing the development server over HTTPS, but it only supports HTTP.
+[07/Nov/2026 21:13:00] "HEAD / HTTP/1.1" 404 0
+[07/Nov/2026 21:13:00] You're accessing the development server over HTTPS, but it only supports HTTP.
+[07/Nov/2026 21:13:00] You're accessing the development server over HTTPS, but it only supports HTTP.
+[07/Nov/2026 21:13:00] You're accessing the development server over HTTPS, but it only supports HTTP.
+[07/Nov/2026 21:13:00] code 400, message Bad request version ('\x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00')
+[07/Nov/2026 21:13:00] You're accessing the development server over HTTPS, but it only supports HTTP.
+[07/Nov/2026 21:13:00] code 400, message Bad request version ('\x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x006\x00')
+[07/Nov/2026 21:13:00] code 400, message Bad request version ('\x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00\x00\x16\x00')
+[07/Nov/2026 21:13:00] code 400, message Bad request version ('\x00/\x00')
+[07/Nov/2026 21:13:00] You're accessing the development server over HTTPS, but it only supports HTTP.
+[07/Nov/2026 21:13:00] You're accessing the development server over HTTPS, but it only supports HTTP.
+[07/Nov/2026 21:13:00] You're accessing the development server over HTTPS, but it only supports HTTP.
+Not Found: /
+[07/Nov/2026 21:13:00] "GET / HTTP/1.1" 404 3826
+[07/Nov/2026 21:13:00] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x02\x00Ã\x01\x00\x00¿\x03\x02jï\x86LüÁ¨')
+[07/Nov/2026 21:13:00] You're accessing the development server over HTTPS, but it only supports HTTP.
+[07/Nov/2026 21:13:00] code 400, message Bad request version ('À#À¬À®À+À')
+[07/Nov/2026 21:13:00] You're accessing the development server over HTTPS, but it only supports HTTP.
+[07/Nov/2026 21:13:00] code 400, message Bad request version ('À#À¬À®À+À')
+[07/Nov/2026 21:13:00] You're accessing the development server over HTTPS, but it only supports HTTP.
+[07/Nov/2026 21:13:00] code 400, message Bad request version ('\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00')
+[07/Nov/2026 21:13:00] You're accessing the development server over HTTPS, but it only supports HTTP.
+[07/Nov/2026 21:13:00] code 400, message Bad request version ('\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x00\x16\x00')
+[07/Nov/2026 21:13:00] You're accessing the development server over HTTPS, but it only supports HTTP.
+[07/Nov/2026 21:13:00] code 400, message Bad request version ('\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00\x006\x00')
+[07/Nov/2026 21:13:00] You're accessing the development server over HTTPS, but it only supports HTTP.
+[07/Nov/2026 21:13:00] code 400, message Bad request version ('\x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x006\x00')
+[07/Nov/2026 21:13:00] You're accessing the development server over HTTPS, but it only supports HTTP.
+[07/Nov/2026 21:13:00] code 400, message Bad request version ('\x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00')
+[07/Nov/2026 21:13:00] You're accessing the development server over HTTPS, but it only supports HTTP.
+[07/Nov/2026 21:13:00] code 400, message Bad request version ('\x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00\x00\x16\x00')
+[07/Nov/2026 21:13:00] You're accessing the development server over HTTPS, but it only supports HTTP.
+[07/Nov/2026 21:13:01] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x02\x00½\x01\x00\x00¹\x03\x02jï\x86MkÇ,¦Ïr\x0e')
+[07/Nov/2026 21:13:01] You're accessing the development server over HTTPS, but it only supports HTTP.
+[07/Nov/2026 21:13:01] code 400, message Bad request version ('E\x8a\x8bÐ¯*hP\x97ë\x9a\x00\x00z\x00\x93\x00\x94\x00¶\x00¬\x00\x95\x00·\x00\xadÀhÀnÀiÀoÀ\x98À\x92À\x99À\x93Ì®\x00.\x00¸\x00¹\x00\x92\x00|\x00')
+[07/Nov/2026 21:13:01] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00½\x01\x00\x00¹\x03\x01jï\x86Mxé#+\x92\x08\x8ax¬ª\x9f¢ÿÛt\x05Ö\x07\x9c\x0e`XZ')
+[07/Nov/2026 21:13:01] You're accessing the development server over HTTPS, but it only supports HTTP.
+[07/Nov/2026 21:13:01] You're accessing the development server over HTTPS, but it only supports HTTP.
+[07/Nov/2026 21:13:05] code 400, message Bad request version ('þÿþþ\x00c\x00e\x00\x11\x00r\x00\x13\x00s\x002\x00@\x00¢\x00t\x008\x00j\x00£ÀBÀVÀCÀW\x00D\x00½À\x80\x00\x87\x00ÃÀ\x81\x00\x12\x00f\x00\x99\x00\x8f\x00\x90\x00²À¦\x00ª\x00\x91\x00³À§\x00«ÀfÀlÀgÀmÀ\x96À\x90À\x97À\x91Ì\xad\x00-\x00´\x00µ\x00\x8e\x00\x14\x00w\x00\x16\x00x\x003\x00gÀ\x9eÀ¢\x00\x9e\x00y\x009\x00k\x01\x00')
+[07/Nov/2026 21:13:05] You're accessing the development server over HTTPS, but it only supports HTTP.
+[07/Nov/2026 21:13:05,410] - Broken pipe from ('127.0.0.1', 54226)
+[07/Nov/2026 21:13:10] code 400, message Bad request version ('\x007\x00i\x00¡À@ÀTÀAÀU\x00C\x00¼À~\x00\x86\x00ÂÀ\x7f\x00\x0f\x00\x98\x00\x19\x00\x17\x00\x1b\x004\x00l\x00¦\x00:\x01\x00')
+[07/Nov/2026 21:13:10] You're accessing the development server over HTTPS, but it only supports HTTP.
+[07/Nov/2026 21:13:10] code 400, message Bad request version ('À#À¬À®À+À')
+[07/Nov/2026 21:13:10] You're accessing the development server over HTTPS, but it only supports HTTP.
+[07/Nov/2026 21:13:10,511] - Broken pipe from ('127.0.0.1', 54340)
+[07/Nov/2026 21:13:15] code 400, message Bad request version ('\x00[\x00\\\x00WÀ\x17\x00ZÀ\x18À\x19\x01\x00')
+[07/Nov/2026 21:13:15] You're accessing the development server over HTTPS, but it only supports HTTP.
+[07/Nov/2026 21:13:15,614] - Broken pipe from ('127.0.0.1', 34646)
+[07/Nov/2026 21:13:20] code 400, message Bad request version ('\x00\x00ÀªÀ«\x00\x8b\x00\x8c\x00®À¤À¨\x00¨\x00\x8d\x00¯À¥À©\x00©ÀdÀjÀeÀkÀ\x94À\x8eÀ\x95À\x8fÌ«\x00,\x00°\x00±\x00\x8a\x00b\x00a\x00`\x00d\x00\x08\x00\x06\x00\x03\x01\x00')
+[07/Nov/2026 21:13:20] You're accessing the development server over HTTPS, but it only supports HTTP.
+[07/Nov/2026 21:13:20,715] - Broken pipe from ('127.0.0.1', 34654)
+[07/Nov/2026 21:13:20] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x00\x00¥\x01\x00\x00¡\x03\x00jï\x86`S\x00\x84íx\x7f¼>.{\x9f\x07K÷"Â\\é\x91Òì\x1bµâ\x82\x04Î')
+[07/Nov/2026 21:13:20] You're accessing the development server over HTTPS, but it only supports HTTP.

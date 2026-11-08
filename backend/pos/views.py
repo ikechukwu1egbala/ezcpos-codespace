@@ -10,7 +10,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
  def get_queryset(self): return Category.objects.filter(products__business=self.request.user.business).distinct()
 class ProductViewSet(viewsets.ModelViewSet):
  serializer_class=ProductSerializer
- def get_queryset(self): return Product.objects.filter(business=self.request.user.business).select_related("category")
+ def get_queryset(self): return Product.objects.filter(business=self.request.user.business).select_related("category").order_by("name", "id")
 class CustomerViewSet(viewsets.ModelViewSet):
  serializer_class=CustomerSerializer
  def get_queryset(self): return Customer.objects.filter(business=self.request.user.business)
